@@ -5,10 +5,10 @@ import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
 import AppLayout from "./pages/AppLayout";
-import { useState } from "react";
+// import { useState } from "react";
 import CityList from "./components/CityList";
 function App() {
-  const BASE_URL = "http://localhost:9000/cities";
+  // const BASE_URL = "http://localhost:9000/cities";
 
   return (
     <div>
