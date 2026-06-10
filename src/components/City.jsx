@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./City.module.css";
-
+import Button from "./Button";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -16,6 +16,10 @@ function City({ cities }) {
   const currentCity = cities.find((city) => city.id === Number(id));
 
   const { cityName, emoji, date, notes } = currentCity;
+
+  // New: Navigate back "programmatic navigation"
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles.city}>
@@ -49,7 +53,16 @@ function City({ cities }) {
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <Button
+          variant={"back"}
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          &larr;
+        </Button>
+      </div>
     </div>
   );
 }
