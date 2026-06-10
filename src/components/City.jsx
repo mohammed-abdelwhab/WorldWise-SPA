@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import styles from "./City.module.css";
 
 const formatDate = (date) =>
@@ -8,14 +9,11 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-function City() {
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+function City({ cities }) {
+  // Reading the params passed through URL :
+  const { id } = useParams(); // !! Note:  here the id is a string not a number
+
+  const currentCity = cities.find((city) => city.id === Number(id));
 
   const { cityName, emoji, date, notes } = currentCity;
 
