@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
 import AppLayout from "./pages/AppLayout";
 import CitiesList from "./components/CitiesList";
+import CountryList from "./components/CountryList";
 function App() {
   const BASE_URL = "http://localhost:9000";
   const [cities, setCities] = useState([]);
@@ -44,7 +45,10 @@ function App() {
               path="cities"
               element={<CitiesList cities={cities} isLoading={isLoading} />}
             />
-            <Route path="countries" element={<h4>countries list</h4>} />
+            <Route
+              path="countries"
+              element={<CountryList cities={cities} isLoading={isLoading} />}
+            />
             <Route path="form" element={<h4>Form list</h4>} />
           </Route>
           <Route path="login" element={<Login />} />
