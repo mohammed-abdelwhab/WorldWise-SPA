@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useCity } from "./contexts/CitiesContext";
+import { useCity } from "../contexts/CitiesContext";
 import styles from "./City.module.css";
 import Button from "./Button";
+import { useEffect } from "react";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -15,8 +16,10 @@ function City() {
   const { id } = useParams();
   // Consuming the context:
   const { currentCity, getCurrentCity } = useCity();
-  // getting the current city
-  getCurrentCity(Number(id));
+  // getting the current city --> a side effect so we need a useEffect
+  useEffect(() => {
+    getCurrentCity(Number(id));
+  }, [id]);
 
   // New: Navigate back "programmatic navigation"
   const navigate = useNavigate();

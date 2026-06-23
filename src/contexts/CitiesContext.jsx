@@ -24,19 +24,6 @@ function CitiesProvider({ children }) {
     getCities();
   }, []);
 
-  // async function getCurrentCity(id) {
-  //   try {
-  //     setIsLoading(true);
-  //     const response = await fetch(`${BASE_URL}/cities/${id}`);
-  //     const data = await response.json();
-  //     if (!response.ok) throw new Error("can't fetch this city");
-  //     setCurrentCity(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
   function getCurrentCity(id) {
     const city = cities.find((city) => city.id === id);
     setCurrentCity(city);
