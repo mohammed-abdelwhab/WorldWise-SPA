@@ -1,32 +1,82 @@
 import styles from "./Map.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
+import { useCity } from "../contexts/CitiesContext";
 function Map() {
   // Reading the postion (query string) from the URL:
-  const [SearchParams, setSearchParams] = useSearchParams();
-  const lat = SearchParams.get("lat");
-  const lng = SearchParams.get("lng");
+  const [SearchParams] = useSearchParams();
+  const mapLat = SearchParams.get("lat");
+  const mapLng = SearchParams.get("lng");
 
-  // Navigation to the form on clicking on the map:
-  const navigate = useNavigate();
+  const [mapPosition, setmapPosition] = useState([
+    mapLat || 51.505,
+    mapLng || -0.09,
+  ]);
+  const { cities } = useCity();
+
+  //? NOTE: Synchronizing the mapPosition with lat, lng to be remembered:
+  //** The feature: When the used clicks on a visited city, the map position goes
+  // * there and when closing, the map remains there --> remembered the lat, lng positions  */
+  useEffect(() => {
+    if (mapLat && mapLng) setmapPosition([mapLat, mapLng]);
+  }, [mapLat, mapLng]);
+
   return (
-    <div
-      className={styles.mapContainer}
-      onClick={() => {
-        navigate("form");
-      }}
-    >
-      <h1>Map Position Coords:</h1>
-      <h3>lat = {lat} </h3>
-      <h3>lng = {lng} </h3>
-      <button
-        onClick={() => {
-          setSearchParams({ lat: 25, lng: 21 });
-        }}
+    <div className={`${styles.mapContainer}`}>
+      <MapContainer
+        center={mapPosition}
+        zoom={8}
+        scrollWheelZoom={true}
+        className={styles.map}
       >
-        change positon
-      </button>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+        />
+        {cities.map((city) => (
+          <Marker
+            position={[city.position.lat, city.position.lng]}
+            key={city.id}
+          >
+            <Popup>
+              <span>{city.cityName}</span> <span>{city.emoji}</span>
+            </Popup>
+          </Marker>
+        ))}
+        <ChangeCenter position={mapPosition} />
+        <MapClicking />
+      </MapContainer>
     </div>
   );
+}
+
+//TODO1)  NOTE: For adding a moving position of the map, we need to make a custom component
+function ChangeCenter({ position }) {
+  // we import the useMap hook from leaflet so we can set the view
+  const map = useMap();
+  map.setView(position);
+  // since this is a component it must return some jsx and null is valid
+  return null;
+}
+
+//TODO 2) Navigation to the form on clicking on the map and passing the lat, lng of the clicked position via query stirng:
+function MapClicking() {
+  const navigate = useNavigate();
+  useMapEvents({
+    click: (e) => {
+      const { lat, lng } = e.latlng;
+      navigate(`form?lat=${lat}&lng=${lng}`);
+    },
+  });
+  return null;
 }
 
 export default Map;
