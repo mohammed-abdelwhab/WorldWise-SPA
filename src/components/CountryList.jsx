@@ -2,7 +2,10 @@ import styles from "./CountryList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
 import CountryItem from "./CountryItem";
-function CountryList({ cities, isLoading }) {
+import { useCity } from "./contexts/CitiesContext";
+function CountryList() {
+  const { cities, isLoading } = useCity();
+
   // Using Map iterator to make an object of the visitied countries and there emojie's without duplication
   //* I didn't use Set as i also want the emoji of the country as well --> return an array of objects with country,emoji (key : value)
   //
