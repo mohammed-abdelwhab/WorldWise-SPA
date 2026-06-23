@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useCity } from "../contexts/CitiesContext";
 import styles from "./City.module.css";
-import Button from "./Button";
 import { useEffect } from "react";
 import BackButton from "./BackButton";
 const formatDate = (date) =>
@@ -20,7 +19,7 @@ function City() {
   // getting the current city --> a side effect so we need a useEffect
   useEffect(() => {
     getCurrentCity(Number(id));
-  }, [id]);
+  }, [id, getCurrentCity]);
 
   return (
     <div className={styles.city}>
