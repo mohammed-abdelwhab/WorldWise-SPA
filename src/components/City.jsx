@@ -1,8 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCity } from "../contexts/CitiesContext";
 import styles from "./City.module.css";
 import Button from "./Button";
 import { useEffect } from "react";
+import BackButton from "./BackButton";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -20,9 +21,6 @@ function City() {
   useEffect(() => {
     getCurrentCity(Number(id));
   }, [id]);
-
-  // New: Navigate back "programmatic navigation"
-  const navigate = useNavigate();
 
   return (
     <div className={styles.city}>
@@ -57,14 +55,7 @@ function City() {
       </div>
 
       <div>
-        <Button
-          variant={"back"}
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          &larr;
-        </Button>
+        <BackButton />
       </div>
     </div>
   );
