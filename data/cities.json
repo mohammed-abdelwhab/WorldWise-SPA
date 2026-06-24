@@ -35,6 +35,54 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Welwyn Garden City",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-24T23:30:42.968Z",
+      "notes": "",
+      "position": {
+        "lat": "51.76835939054276",
+        "lng": "-0.14377939328005243"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Chassignolles",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2026-06-26T23:31:16.000Z",
+      "notes": "",
+      "position": {
+        "lat": "46.549975805052846",
+        "lng": "1.9017446460629952"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Al Mansurah",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2026-06-24T23:33:10.566Z",
+      "notes": "Home sweet Home💞",
+      "position": {
+        "lat": "31.037676083855196",
+        "lng": "31.38542045226678"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Ait Faska",
+      "country": "Morocco",
+      "emoji": "🇲🇦",
+      "date": "2026-06-24T23:33:51.556Z",
+      "notes": "",
+      "position": {
+        "lat": "31.521966460832054",
+        "lng": "-7.660910814117111"
+      },
+      "id": 98443201
     }
   ]
 }

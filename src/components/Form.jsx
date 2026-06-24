@@ -1,6 +1,11 @@
 import styles from "./Form.module.css";
 import { useEffect, useReducer } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
+
 import { useURLposition } from "../hooks/useURLposition";
+import { useCity } from "../contexts/CitiesContext";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import Spinner from "./Spinner";
@@ -60,10 +65,10 @@ function reducer(state, action) {
   }
 }
 
-function Form() {
-  // Reading the lat, lng from the url to load the new city clicked on the map
+export default function Form() {
+  const navigate = useNavigate();
+  const { addCity } = useCity();
   const [lat, lng] = useURLposition();
-  // defining our state values:
   const [formState, dispatch] = useReducer(reducer, initialState);
   const {
     cityName,
@@ -77,6 +82,8 @@ function Form() {
 
   //? Fetching the clicked city info based on the lat,lng values:
   useEffect(() => {
+    if (!lat && !lng) return;
+
     async function getClickedCity() {
       try {
         dispatch({ type: "fetch_start" });
@@ -98,6 +105,24 @@ function Form() {
     getClickedCity();
   }, [lat, lng]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!cityName || !date) return;
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: {
+        lat,
+        lng,
+      },
+    };
+    addCity(newCity);
+    navigate("/app/cities");
+  }
+
   if (isLoadingGeocode) return <Spinner />;
   if (errorMessage)
     return (
@@ -107,8 +132,11 @@ function Form() {
       </>
     );
 
+  if (!lat && !lng)
+    return <Message message="Start by Clicking somewhere on the map 😜" />;
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
@@ -123,12 +151,11 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input
-          id="date"
-          onChange={(e) =>
-            dispatch({ type: "Set_date", payload: e.target.value })
-          }
-          value={date}
+
+        <DatePicker
+          selected={date}
+          onChange={(value) => dispatch({ type: "Set_date", payload: value })}
+          dateFormat="dd/MM/yyyy"
         />
       </div>
 
@@ -144,19 +171,10 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button
-          variant={"primary"}
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Add
-        </Button>
+        <Button variant={"primary"}>Add</Button>
 
         <BackButton />
       </div>
     </form>
   );
 }
-
-export default Form;
