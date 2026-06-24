@@ -83,6 +83,42 @@
         "lng": "-7.660910814117111"
       },
       "id": 98443201
+    },
+    {
+      "cityName": "Øystre Slidre",
+      "country": "Norway",
+      "emoji": "🇳🇴",
+      "date": "2026-06-24T23:47:19.211Z",
+      "notes": "",
+      "position": {
+        "lat": "61.2156332161555",
+        "lng": "8.952387051854181"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-24T23:48:38.601Z",
+      "notes": "",
+      "position": {
+        "lat": "51.30395560068165",
+        "lng": "-0.11638293004401447"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Makkah",
+      "country": "Saudi Arabia",
+      "emoji": "🇸🇦",
+      "date": "2026-08-26T23:50:55.000Z",
+      "notes": "",
+      "position": {
+        "lat": "21.43466104485499",
+        "lng": "39.947842661012565"
+      },
+      "id": 98443204
     }
   ]
 }

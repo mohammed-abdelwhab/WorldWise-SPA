@@ -67,7 +67,7 @@ function reducer(state, action) {
 
 export default function Form() {
   const navigate = useNavigate();
-  const { addCity } = useCity();
+  const { addCity, isLoading } = useCity();
   const [lat, lng] = useURLposition();
   const [formState, dispatch] = useReducer(reducer, initialState);
   const {
@@ -105,7 +105,7 @@ export default function Form() {
     getClickedCity();
   }, [lat, lng]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!cityName || !date) return;
     const newCity = {
@@ -119,7 +119,7 @@ export default function Form() {
         lng,
       },
     };
-    addCity(newCity);
+    await addCity(newCity);
     navigate("/app/cities");
   }
 
@@ -136,7 +136,10 @@ export default function Form() {
     return <Message message="Start by Clicking somewhere on the map 😜" />;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? `${styles.loading}` : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
