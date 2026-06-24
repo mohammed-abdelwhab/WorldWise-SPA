@@ -1,11 +1,11 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 import styles from "./Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
+import { useURLposition } from "../hooks/useURLposition";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -16,14 +16,12 @@ export function convertToEmoji(countryCode) {
 }
 
 function Form() {
-  // Reading the postion (query string) from the URL:
-  const [SearchParams] = useSearchParams();
-  const newLat = SearchParams.get("lat");
-  const newLng = SearchParams.get("lng");
-  console.log(newLat, newLng);
+  // Reading the lat, lng from the url to load the new city clicked on the map
+  const [lat, lng] = useURLposition();
+  console.log(lat, lng);
 
   const [cityName, setCityName] = useState("");
-  // const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   return (
