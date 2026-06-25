@@ -1,5 +1,5 @@
 import styles from "./Map.module.css";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
@@ -10,27 +10,46 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useCity } from "../contexts/CitiesContext";
+import { useGeolocation } from "../hooks/useGeolocation";
+import Button from "./Button";
+import { useURLposition } from "../hooks/useURLposition";
 function Map() {
-  // Reading the postion (query string) from the URL:
-  const [SearchParams] = useSearchParams();
-  const mapLat = SearchParams.get("lat");
-  const mapLng = SearchParams.get("lng");
+  // Reading the postion (query string) from the URL custom hook we made
+  const [mapLat, mapLng] = useURLposition();
 
   const [mapPosition, setmapPosition] = useState([
     mapLat || 51.505,
     mapLng || -0.09,
   ]);
+  //Reaidng the cities context from the useCity custom hook
   const { cities } = useCity();
+  // Reading values from our geolocation custom hook
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
 
-  //? NOTE: Synchronizing the mapPosition with lat, lng to be remembered:
+  //? NOTE: 1) Synchronizing the mapPosition with lat, lng to be remembered:
   //** The feature: When the used clicks on a visited city, the map position goes
   // * there and when closing, the map remains there --> remembered the lat, lng positions  */
   useEffect(() => {
     if (mapLat && mapLng) setmapPosition([mapLat, mapLng]);
   }, [mapLat, mapLng]);
 
+  //? Note : 2) synchronizing the mapPositon to the lat, lng of my current geolocation position
+  useEffect(() => {
+    if (geolocationPosition)
+      setmapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+  }, [geolocationPosition]);
+
   return (
     <div className={`${styles.mapContainer}`}>
+      {!geolocationPosition && (
+        <Button variant={"position"} onClick={getPosition}>
+          {isLoadingPosition ? "loading..." : "use your positon"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={8}

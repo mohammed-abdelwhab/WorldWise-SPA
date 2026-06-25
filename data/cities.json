@@ -25,16 +25,52 @@
       "id": 17806751
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Al Mansurah",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2026-06-24T23:33:10.566Z",
+      "notes": "Home sweet Home💞",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": "31.037676083855196",
+        "lng": "31.38542045226678"
       },
-      "id": 98443197
+      "id": 98443200
+    },
+    {
+      "cityName": "Ait Faska",
+      "country": "Morocco",
+      "emoji": "🇲🇦",
+      "date": "2026-06-24T23:33:51.556Z",
+      "notes": "",
+      "position": {
+        "lat": "31.521966460832054",
+        "lng": "-7.660910814117111"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Øystre Slidre",
+      "country": "Norway",
+      "emoji": "🇳🇴",
+      "date": "2026-06-24T23:47:19.211Z",
+      "notes": "",
+      "position": {
+        "lat": "61.2156332161555",
+        "lng": "8.952387051854181"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Makkah",
+      "country": "Saudi Arabia",
+      "emoji": "🇸🇦",
+      "date": "2026-08-26T23:50:55.000Z",
+      "notes": "",
+      "position": {
+        "lat": "21.43466104485499",
+        "lng": "39.947842661012565"
+      },
+      "id": 98443204
     }
   ]
 }

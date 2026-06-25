@@ -24,6 +24,46 @@ function CitiesProvider({ children }) {
     getCities();
   }, []);
 
+  async function addCity(newCity) {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: {
+          "Content-Type": "application/json", // Informs server of JSON formatting
+        },
+      });
+      const data = await response.json();
+      setCities((curr) => [...curr, data]);
+    } catch {
+      alert("There was an error adding the city.....");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function removeCity(id) {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json", // Informs server of JSON formatting
+        },
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      setCities((curr) => curr.filter((city) => city.id !== id));
+    } catch (error) {
+      alert(`Failed to delete city: ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   function getCurrentCity(id) {
     const city = cities.find((city) => city.id === id);
     setCurrentCity(city);
@@ -31,7 +71,14 @@ function CitiesProvider({ children }) {
 
   return (
     <citiesContext.Provider
-      value={{ cities, isLoading, currentCity, getCurrentCity }}
+      value={{
+        cities,
+        isLoading,
+        currentCity,
+        getCurrentCity,
+        addCity,
+        removeCity,
+      }}
     >
       {children}
     </citiesContext.Provider>
