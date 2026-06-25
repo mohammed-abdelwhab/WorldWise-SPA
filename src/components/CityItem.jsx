@@ -11,8 +11,14 @@ function CityItem({ city }) {
     hour: "2-digit",
     minute: "2-digit",
   };
-  const { currentCity } = useCity();
+  const { currentCity, removeCity } = useCity();
   // Passing params (id) from the city item in the list to the city page (component) & positon as query string to the map component
+
+  function handleClick(e) {
+    e.preventDefault();
+    if (window.confirm("Are you sure you want to delete?")) removeCity(id);
+  }
+
   return (
     <li>
       <Link
@@ -24,7 +30,9 @@ function CityItem({ city }) {
         <p className={styles.date}>
           {dateFormat.toLocaleDateString("en-US", options)}
         </p>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleClick}>
+          &times;
+        </button>
       </Link>
     </li>
   );

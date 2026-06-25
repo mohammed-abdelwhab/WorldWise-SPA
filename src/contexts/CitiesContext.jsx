@@ -43,6 +43,27 @@ function CitiesProvider({ children }) {
     }
   }
 
+  async function removeCity(id) {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json", // Informs server of JSON formatting
+        },
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      setCities((curr) => curr.filter((city) => city.id !== id));
+    } catch (error) {
+      alert(`Failed to delete city: ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   function getCurrentCity(id) {
     const city = cities.find((city) => city.id === id);
     setCurrentCity(city);
@@ -50,7 +71,14 @@ function CitiesProvider({ children }) {
 
   return (
     <citiesContext.Provider
-      value={{ cities, isLoading, currentCity, getCurrentCity, addCity }}
+      value={{
+        cities,
+        isLoading,
+        currentCity,
+        getCurrentCity,
+        addCity,
+        removeCity,
+      }}
     >
       {children}
     </citiesContext.Provider>
