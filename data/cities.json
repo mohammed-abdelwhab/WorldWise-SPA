@@ -49,18 +49,6 @@
       "id": 98443201
     },
     {
-      "cityName": "Øystre Slidre",
-      "country": "Norway",
-      "emoji": "🇳🇴",
-      "date": "2026-06-24T23:47:19.211Z",
-      "notes": "",
-      "position": {
-        "lat": "61.2156332161555",
-        "lng": "8.952387051854181"
-      },
-      "id": 98443202
-    },
-    {
       "cityName": "Makkah",
       "country": "Saudi Arabia",
       "emoji": "🇸🇦",
@@ -71,6 +59,18 @@
         "lng": "39.947842661012565"
       },
       "id": 98443204
+    },
+    {
+      "cityName": "Liverpool",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-07-04T15:43:24.000Z",
+      "notes": "Anfield is the best stadium ever ⚽🥰",
+      "position": {
+        "lat": "53.40744699157781",
+        "lng": "-2.9939460754394536"
+      },
+      "id": 98443205
     }
   ]
 }
