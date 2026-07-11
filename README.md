@@ -21,8 +21,7 @@ This isn't just a course project I copied — it's where these concepts finally 
   place instead of scattered `useState` calls
 - **Side effects** — fetching city data from an API on route change using `useEffect`
   with proper cleanup and AbortController
-- **Performance** — `memo`, `useMemo`, `useCallback` to prevent unnecessary re-renders
-  on the map component
+- **Fake Authentication** — Logging in and out the app based on a single fake user without usign API Endpoints to keep it simple in addition to protecting the application route
 
 ---
 
