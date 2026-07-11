@@ -24,3 +24,9 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.error {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 2rem;
+}
