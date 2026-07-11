@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
   const navigate = useNavigate();
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, errorMessage, logout } = useAuth();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,31 +28,41 @@ export default function Login() {
   return (
     <main className={styles.login}>
       <PageNav />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.row}>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </div>
 
-        <div className={styles.row}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
+      {errorMessage ? (
+        <div className={styles.error}>
+          <h2>{errorMessage}</h2>
+          <Button variant={"primary"} onClick={() => logout()}>
+            Try again
+          </Button>
         </div>
+      ) : (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.row}>
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </div>
 
-        <div>
-          <Button variant={"primary"}>Login</Button>
-        </div>
-      </form>
+          <div className={styles.row}>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+
+          <div>
+            <Button variant={"primary"}>Login</Button>
+          </div>
+        </form>
+      )}
     </main>
   );
 }

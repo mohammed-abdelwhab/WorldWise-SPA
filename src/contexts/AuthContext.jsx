@@ -4,6 +4,7 @@ import { createContext, useContext, useReducer } from "react";
 const initialState = {
   user: null,
   isAuthenticated: false,
+  errorMessage: "",
 };
 
 const FAKE_USER = {
@@ -18,7 +19,9 @@ function reducer(state, action) {
     case "login":
       return { ...state, user: action.payload, isAuthenticated: true };
     case "logout":
-      return { ...state, user: null, isAuthenticated: false };
+      return initialState;
+    case "not-user":
+      return { ...state, errorMessage: "Un-authorized user❌❌" };
     default:
       throw new Error("Unknown Action");
   }
@@ -27,13 +30,15 @@ function reducer(state, action) {
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, errorMessage }, dispatch] = useReducer(
     reducer,
     initialState,
   );
   function login(email, password) {
     if (FAKE_USER.email === email && FAKE_USER.password === password) {
       dispatch({ type: "login", payload: FAKE_USER });
+    } else {
+      dispatch({ type: "not-user" });
     }
   }
 
@@ -41,7 +46,9 @@ function AuthProvider({ children }) {
     dispatch({ type: "logout" });
   }
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, errorMessage, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
