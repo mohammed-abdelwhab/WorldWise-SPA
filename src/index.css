@@ -2,17 +2,28 @@
 @import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
 @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
+@media (max-width: 1023px) {
+  label {
+    font-size: 1.3rem;
+  }
+  input,
+  textarea {
+    padding: 0.6rem 1rem;
+    font-size: 1.3rem;
+  }
+}
 /* These CSS variables are global, so they are available in all CSS modules */
-:root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
 
-  --color-dark--0: #242a2e;
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
-  --color-light--1: #aaa;
-  --color-light--2: #ececec;
-  --color-light--3: #d6dee0;
+:root {
+  --color-brand--1: #e3a857;
+  --color-brand--2: #2fbf8f;
+
+  --color-dark--0: #12181b;
+  --color-dark--1: #1b2427;
+  --color-dark--2: #253034;
+  --color-light--1: #8fa3aa;
+  --color-light--2: #e8edee;
+  --color-light--3: #33444a;
 }
 
 * {

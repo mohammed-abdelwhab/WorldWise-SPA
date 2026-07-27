@@ -37,18 +37,6 @@
       "id": 98443200
     },
     {
-      "cityName": "Ait Faska",
-      "country": "Morocco",
-      "emoji": "🇲🇦",
-      "date": "2026-06-24T23:33:51.556Z",
-      "notes": "",
-      "position": {
-        "lat": "31.521966460832054",
-        "lng": "-7.660910814117111"
-      },
-      "id": 98443201
-    },
-    {
       "cityName": "Makkah",
       "country": "Saudi Arabia",
       "emoji": "🇸🇦",
@@ -59,18 +47,6 @@
         "lng": "39.947842661012565"
       },
       "id": 98443204
-    },
-    {
-      "cityName": "Liverpool",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2026-07-04T15:43:24.000Z",
-      "notes": "Anfield is the best stadium ever ⚽🥰",
-      "position": {
-        "lat": "53.40744699157781",
-        "lng": "-2.9939460754394536"
-      },
-      "id": 98443205
     }
   ]
 }

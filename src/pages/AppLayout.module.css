@@ -3,5 +3,12 @@
   padding: 2.4rem;
   overscroll-behavior-y: none;
   display: flex;
+  flex-direction: column;
   position: relative;
+}
+@media (min-width: 1024px) {
+  .app {
+    flex-direction: row;
+    padding: 2.4rem;
+  }
 }

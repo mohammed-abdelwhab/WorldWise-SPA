@@ -1,23 +1,18 @@
 .user {
-  position: absolute;
-  top: 4.2rem;
-  right: 4.2rem;
-  background-color: var(--color-dark--1);
-  padding: 1rem 1.4rem;
-  border-radius: 7px;
-  z-index: 999;
-  box-shadow: 0 0.8rem 2.4rem rgba(36, 42, 46, 0.5);
-  font-size: 1.6rem;
-  font-weight: 600;
-
+  order: -1;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  justify-content: space-between;
+  background-color: var(--color-dark--1);
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  gap: 1rem;
 }
 
 .user img {
-  border-radius: 100px;
   height: 4rem;
+  border-radius: 100px;
 }
 
 .user button {
@@ -31,4 +26,24 @@
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .user {
+    order: 0;
+    position: absolute;
+    top: 4.2rem;
+    right: 4.2rem;
+    width: auto;
+    padding: 1rem 1.4rem;
+    border-radius: 7px;
+    z-index: 999;
+    box-shadow: 0 0.8rem 2.4rem rgba(36, 42, 46, 0.5);
+    font-size: 1.6rem;
+    font-weight: 600;
+    gap: 1.6rem;
+  }
+  .user img {
+    height: 4rem;
+  }
 }

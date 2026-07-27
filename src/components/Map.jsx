@@ -72,6 +72,7 @@ function Map() {
         ))}
         <ChangeCenter position={mapPosition} />
         <MapClicking />
+        <ResizeHandler />
       </MapContainer>
     </div>
   );
@@ -95,6 +96,21 @@ function MapClicking() {
       navigate(`form?lat=${lat}&lng=${lng}`);
     },
   });
+  return null;
+}
+
+//* TODO 3) New feature for responsive design: Remeasure on resize:
+function ResizeHandler() {
+  const map = useMap();
+
+  useEffect(() => {
+    function handleResize() {
+      map.invalidateSize();
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [map]);
+
   return null;
 }
 
