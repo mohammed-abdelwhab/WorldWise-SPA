@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -47,6 +35,30 @@
         "lng": "39.947842661012565"
       },
       "id": 98443204
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2026-07-27T18:21:35.233Z",
+      "notes": "What a match was between PSG & Monaco ⚽",
+      "position": {
+        "lat": "48.83631862494216",
+        "lng": "2.3565673828125"
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "Almeida",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2026-07-30T13:01:56.220Z",
+      "notes": "",
+      "position": {
+        "lat": "40.56694522608744",
+        "lng": "-6.911165075918987"
+      },
+      "id": 98443206
     }
   ]
 }

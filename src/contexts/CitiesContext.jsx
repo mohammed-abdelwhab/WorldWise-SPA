@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 const citiesContext = createContext();
 function CitiesProvider({ children }) {
@@ -64,22 +71,26 @@ function CitiesProvider({ children }) {
     }
   }
 
-  function getCurrentCity(id) {
-    const city = cities.find((city) => city.id === id);
-    setCurrentCity(city);
-  }
+  const getCurrentCity = useCallback(
+    function getCurrentCity(id) {
+      const city = cities.find((city) => city.id === id);
+      setCurrentCity(city);
+    },
+    [cities],
+  );
 
+  const Contextvalue = useMemo(() => {
+    return {
+      cities,
+      isLoading,
+      currentCity,
+      getCurrentCity,
+      addCity,
+      removeCity,
+    };
+  }, [cities, isLoading, currentCity, getCurrentCity]);
   return (
-    <citiesContext.Provider
-      value={{
-        cities,
-        isLoading,
-        currentCity,
-        getCurrentCity,
-        addCity,
-        removeCity,
-      }}
-    >
+    <citiesContext.Provider value={Contextvalue}>
       {children}
     </citiesContext.Provider>
   );
